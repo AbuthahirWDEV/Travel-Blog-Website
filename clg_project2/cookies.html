@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+
+  div{width: 500px; height:250px; box-shadow: 0px 1px 10px ;position:  absolute;top: 50%;left: 50%;transform:
+     translate(-50%,-50%);background-color: #fff;}
+h1{background-color: red;text-align: center;margin-top: 0;padding: 20px;color: #fff;}
+   a:hover{color: #fff;background-color: blue;transition: all }
+
+  </style>
+<head>
+<script>
+function setCookie(cname,cvalue,exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie() {
+  let user = getCookie("username");
+
+  if (user != "") {
+    alert("Welcome again " + user);
+  } else {
+     user = prompt("Please enter your name:","");
+         alert("Welcome again " + user);
+     if (user != "" && user != null) {
+       setCookie("username", user, 365);
+     }
+  }
+}
+</script>
+</head>
+
+<body onload="checkCookie()">
+  <div>
+     <h1><i>welcome to the Travel blog </i></h1> 
+  <a href="index.php" style="margin-left:50%;margin-top:50%;">MainPage</a>
+</div>
+</body>
+
+</html>
